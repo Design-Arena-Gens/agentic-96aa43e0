@@ -1,6 +1,6 @@
-# AI-Generated Project
+# Veo 3 Video Demo — Alien Arrives on Earth (Next.js)
 
-This project was automatically generated using AI-powered code generation tools.
+Hindi web demo to generate an “alien arrives on Earth” cinematic video using Google Veo (with a safe demo fallback). Built with Next.js (App Router) and deployable on Vercel.
 
 ## 📋 Description
 
@@ -31,19 +31,42 @@ Make sure you have the following installed on your system:
    yarn install
    ```
 
-3. Start the development server:
+3. Copy environment file (optional, only needed if you have a Google API key):
    ```bash
-   npm start
-   # or
-   yarn start
+   cp .env.example .env
+   # then edit .env and set GOOGLE_API_KEY
    ```
 
-4. Open your browser and navigate to `http://localhost:3000` (or the port specified in the console)
+4. Start the development server:
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
+
+5. Open your browser and navigate to `http://localhost:3000` (or the port specified in the console).
+
+If no `GOOGLE_API_KEY` is provided, the app runs in demo mode and returns a sample video so the UI remains fully functional.
+
+## 🔑 Environment Variables
+
+Create a `.env` file (see `.env.example`):
+
+```
+GOOGLE_API_KEY=your_google_genai_key_here
+# Optional model override:
+GOOGLE_VEO_MODEL=veo-3
+```
+
+Notes:
+- The API route is at `/api/generate`. If `GOOGLE_API_KEY` is missing, it will return a mock sample video URL.
+- When a valid key is present, it attempts to call Google’s Generative AI SDK for Veo-compatible models.
 
 ## 📁 Project Structure
 
 ```
-├── src/                 # Source code
+├── app/                # Next.js app router
+├── app/api/generate/   # Serverless API route
 ├── public/             # Static assets
 ├── package.json        # Project dependencies and scripts
 ├── README.md          # This file
@@ -52,10 +75,9 @@ Make sure you have the following installed on your system:
 
 ## 🛠️ Available Scripts
 
-- `npm start` - Runs the app in development mode
-- `npm build` - Builds the app for production
-- `npm test` - Launches the test runner
-- `npm run lint` - Runs the linter to check code quality
+- `npm run dev`   - Run in development
+- `npm run build` - Build for production
+- `npm start`     - Start production server
 
 ## 🎨 Features
 
@@ -82,7 +104,7 @@ Feel free to modify and extend this generated code to meet your specific needs:
 This project may include various modern web technologies such as:
 
 - HTML5, CSS3, JavaScript (ES6+)
-- React, Vue.js, or vanilla JavaScript
+- Next.js (App Router), React
 - CSS frameworks (Bootstrap, Tailwind CSS, etc.)
 - Build tools (Webpack, Vite, etc.)
 - Testing frameworks (Jest, Cypress, etc.)
@@ -119,3 +141,13 @@ If you have any questions or need help with this generated project:
 ---
 
 *This README was automatically generated and can be customized to better fit your project's specific needs.*
+
+## ☁️ Deploy to Vercel
+
+Production deploy (assumes `VERCEL_TOKEN` is configured in your environment):
+
+```bash
+vercel deploy --prod --yes --token "$VERCEL_TOKEN" --name agentic-96aa43e0
+```
+
+After deploy, the production URL should be `https://agentic-96aa43e0.vercel.app`.
